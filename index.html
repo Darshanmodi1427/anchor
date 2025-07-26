@@ -31,304 +31,406 @@
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
-      line-height: 1.7;
-      letter-spacing: 0.01em;
       margin: 0;
       padding: 0;
       overflow-x: hidden;
     }
-    header {
-      background: linear-gradient(90deg, var(--primary) 60%, var(--accent) 100%);
-      color: white;
+    /* Header */
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 40px 18px 24px;
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(60,72,100,0.04);
+      border-bottom: 1.5px solid #e0e7ef;
+    }
+    .site-header .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .site-header .logo img {
+      height: 48px;
+      width: auto;
+      display: block;
+    }
+    .site-header nav {
+      display: flex;
+      gap: 32px;
+    }
+    .site-header nav a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.08rem;
+      letter-spacing: 0.01em;
+      opacity: 0.85;
+      transition: color var(--transition), opacity var(--transition);
+      position: relative;
+    }
+    .site-header nav a:after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transition: width 0.3s;
+      position: absolute;
+      left: 0; bottom: -4px;
+    }
+    .site-header nav a:hover {
+      color: var(--accent);
+      opacity: 1;
+    }
+    .site-header nav a:hover:after {
+      width: 100%;
+    }
+    /* Hero */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 340px;
+      padding: 60px 20px 40px 20px;
+      background: linear-gradient(120deg, var(--primary) 60%, var(--accent) 100%);
+      color: #fff;
       text-align: center;
-      padding: 80px 20px 60px;
-      border-bottom-left-radius: 2.5rem;
-      border-bottom-right-radius: 2.5rem;
       position: relative;
       overflow: hidden;
-      z-index: 1;
-      animation: fadeInDown 1.2s cubic-bezier(.4,2,.3,1);
     }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-60px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    header h1 {
+    .hero h1 {
       font-family: 'Montserrat', Arial, sans-serif;
-      font-size: 3rem;
+      font-size: 2.8rem;
       font-weight: 800;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
       letter-spacing: 0.04em;
-      position: relative;
-      z-index: 1;
       text-shadow: 0 4px 24px rgba(79, 70, 229, 0.18);
-      animation: fadeIn 1.5s 0.2s both;
+      animation: fadeIn 1.2s;
     }
-    header p {
+    .hero p {
       font-size: 1.3rem;
       color: #e0e7ff;
       font-weight: 600;
-      position: relative;
-      z-index: 1;
-      animation: fadeIn 1.5s 0.4s both;
+      margin-bottom: 28px;
+      animation: fadeIn 1.5s 0.2s both;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    nav {
-      position: absolute;
-      top: 18px;
-      right: 32px;
-      z-index: 2;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      margin-left: 24px;
+    .hero .cta-btn {
+      background: #fff;
+      color: var(--primary);
+      font-weight: 700;
       font-size: 1.1rem;
-      opacity: 0.85;
-      transition: color var(--transition), opacity var(--transition);
-    }
-    nav a:hover {
-      color: #ffe082;
-      opacity: 1;
-    }
-    main {
-      max-width: 900px;
-      margin: -70px auto 0 auto;
-      padding: 0 20px 40px 20px;
-      position: relative;
-      z-index: 2;
-    }
-    .card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 2.5rem 2rem 2rem 2rem;
-      margin-bottom: 2.5rem;
-      position: relative;
-      overflow: hidden;
-      transition: box-shadow var(--transition), transform var(--transition);
-      opacity: 0;
-      transform: translateY(40px);
-      will-change: opacity, transform;
-    }
-    .card.visible {
-      opacity: 1;
-      transform: translateY(0);
-      animation: cardPop 0.8s cubic-bezier(.4,2,.3,1);
-    }
-    @keyframes cardPop {
-      from { opacity: 0; transform: translateY(40px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    .photo {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 2.2rem;
-    }
-    .photo img {
-      width: 170px;
-      height: 250px;
-      border-radius: 2rem;
-      object-fit: cover;
-      box-shadow: 0 8px 32px rgba(60, 72, 100, 0.18);
-      border: 5px solid #fff;
-      background: #fff;
-      transition: transform 0.3s cubic-bezier(.4,2,.3,1), box-shadow 0.2s;
-      will-change: transform;
-    }
-    .photo img:hover {
-      transform: scale(1.06) rotate(-2deg);
-      box-shadow: 0 16px 48px rgba(79, 70, 229, 0.18);
-    }
-    h2 {
-      color: var(--primary);
-      margin-bottom: 18px;
-      font-size: 1.5rem;
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      display: flex;
-      align-items: center;
-      gap: 0.5em;
-      opacity: 0;
-      transform: translateX(-30px);
-      transition: opacity 0.5s, transform 0.5s;
-    }
-    .card.visible h2 {
-      opacity: 1;
-      transform: translateX(0);
-      transition-delay: 0.2s;
-    }
-    h2::before {
-      content: '';
-      display: inline-block;
-      width: 8px;
-      height: 28px;
-      background: var(--accent);
-      border-radius: 6px;
-      margin-right: 10px;
-    }
-    ul {
-      list-style-type: disc;
-      margin: 10px 0 25px 28px;
-      color: #444;
-      font-size: 1.08rem;
-    }
-    section {
-      margin-bottom: 32px;
-    }
-    .cta {
-      background: linear-gradient(90deg, var(--accent) 0%, var(--primary) 100%);
-      color: white;
-      text-align: center;
-      padding: 2.5rem 1.5rem 2rem 1.5rem;
-      border-radius: var(--radius);
-      box-shadow: 0 4px 24px rgba(6,182,212,0.10);
-      margin-bottom: 0;
-      position: relative;
-      overflow: hidden;
-      opacity: 0;
-      transform: translateY(40px);
-      will-change: opacity, transform;
-      transition: opacity 0.7s, transform 0.7s;
-    }
-    .cta.visible {
-      opacity: 1;
-      transform: translateY(0);
-      animation: cardPop 0.8s cubic-bezier(.4,2,.3,1);
-    }
-    .cta h3 {
-      font-size: 1.4rem;
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-weight: 700;
-      margin-bottom: 12px;
-      letter-spacing: 0.01em;
-    }
-    .cta p {
-      color: #e0f2fe;
-      margin-bottom: 18px;
-      font-size: 1.08rem;
-    }
-    .cta a {
-      background: #fff;
-      color: var(--primary);
-      padding: 13px 32px;
-      font-weight: 700;
       border-radius: 8px;
+      padding: 14px 36px;
       text-decoration: none;
-      font-size: 1.1rem;
       box-shadow: 0 2px 12px rgba(6,182,212,0.10);
       transition: background 0.2s, color 0.2s, transform 0.2s;
       display: inline-block;
       margin-top: 8px;
-      position: relative;
-      overflow: hidden;
+      border: none;
+      cursor: pointer;
+      animation: fadeIn 1.5s 0.4s both;
     }
-    .cta a::after {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; right: 0; bottom: 0;
-      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-      opacity: 0;
-      transition: opacity 0.3s;
-      z-index: 0;
-      border-radius: 8px;
-    }
-    .cta a:hover {
-      background: var(--primary);
+    .hero .cta-btn:hover {
+      background: var(--accent);
       color: #fff;
       transform: translateY(-2px) scale(1.04);
-      z-index: 1;
     }
-    .cta a:hover::after {
-      opacity: 0.12;
+    /* Cards Section */
+    .info-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      max-width: 1000px;
+      margin: 0 auto 48px auto;
+      padding: 40px 20px 0 20px;
     }
+    .info-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+      opacity: 0;
+      transform: translateY(40px);
+      will-change: opacity, transform;
+    }
+    .info-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      animation: cardPop 0.8s cubic-bezier(.4,2,.3,1);
+    }
+    .info-card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 18px;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 56px;
+      width: 56px;
+      border-radius: 50%;
+      background: #f0f7ff;
+      box-shadow: 0 2px 8px rgba(6,182,212,0.08);
+    }
+    .info-card h2 {
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .info-card ul {
+      list-style-type: disc;
+      margin: 10px 0 0 18px;
+      color: #444;
+      font-size: 1.08rem;
+      text-align: left;
+    }
+    .info-card p {
+      color: #444;
+      font-size: 1.08rem;
+    }
+    /* Highlights Gallery */
+    .highlights-section {
+      margin: 0 auto 48px auto;
+      max-width: 1100px;
+      padding: 0 10px;
+    }
+    .highlights-section h2 {
+      text-align:center;
+      margin-bottom: 2rem;
+      font-size:2rem;
+      color:var(--primary);
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight:800;
+      letter-spacing:0.02em;
+    }
+    .highlights-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 28px;
+      justify-items: center;
+      align-items: stretch;
+    }
+    .highlights-gallery figure {
+      background: #fff;
+      border-radius: 1.2rem;
+      box-shadow: 0 4px 24px rgba(60,72,100,0.10);
+      overflow: hidden;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+      cursor: pointer;
+      position: relative;
+    }
+    .highlights-gallery figure:hover {
+      box-shadow: 0 8px 32px rgba(79,70,229,0.16);
+      transform: translateY(-4px) scale(1.025);
+    }
+    .highlights-gallery img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid #f1f5f9;
+      transition: filter 0.2s;
+    }
+    .highlights-gallery figure:hover img {
+      filter: brightness(1.08) saturate(1.1);
+    }
+    .highlights-gallery figcaption {
+      font-size: 1.08rem;
+      color: var(--primary);
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 600;
+      padding: 12px 10px 10px 10px;
+      text-align: center;
+      background: #f8fafc;
+      width: 100%;
+    }
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      background: rgba(34,34,43,0.92);
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s;
+    }
+    .lightbox.active {
+      display: flex;
+      animation: fadeIn 0.4s;
+    }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 1.2rem;
+      box-shadow: 0 8px 32px rgba(60,72,100,0.25);
+      background: #fff;
+    }
+    .lightbox .close {
+      position: absolute;
+      top: 32px;
+      right: 48px;
+      font-size: 2.5rem;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      z-index: 10001;
+      background: none;
+      border: none;
+    }
+    /* Footer */
     footer {
       background: #f1f5f9;
       color: #6b7280;
       text-align: center;
-      padding: 18px 0 12px 0;
+      padding: 24px 0 16px 0;
       font-size: 1rem;
       border-top-left-radius: 1.5rem;
       border-top-right-radius: 1.5rem;
       margin-top: 30px;
       box-shadow: 0 -2px 12px rgba(60, 72, 100, 0.06);
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.7s, transform 0.7s;
     }
-    footer.visible {
-      opacity: 1;
-      transform: translateY(0);
-      animation: cardPop 0.8s cubic-bezier(.4,2,.3,1);
+    .footer-social {
+      margin-bottom: 10px;
+    }
+    .footer-social a {
+      display: inline-block;
+      margin: 0 8px;
+      color: var(--primary);
+      font-size: 1.5rem;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .footer-social a:hover {
+      color: var(--accent);
     }
     @media (max-width: 900px) {
-      main { max-width: 98vw; }
+      .info-section { grid-template-columns: 1fr; }
+      .highlights-section { max-width: 98vw; }
     }
     @media (max-width: 700px) {
-      main { padding: 0 6px 30px 6px; }
-      .card { padding: 1.5rem 0.7rem 1.2rem 0.7rem; }
-      .photo img { width: 120px; height: 120px; border-radius: 1.2rem; }
-      header h1 { font-size: 2rem; }
-      h2 { font-size: 1.1rem; }
-      .cta { padding: 1.5rem 0.7rem 1.2rem 0.7rem; }
+      .site-header { flex-direction: column; gap: 10px; padding: 12px 8px; }
+      .site-header nav { gap: 16px; }
+      .hero h1 { font-size: 2rem; }
+      .highlights-gallery { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .highlights-gallery img { height: 90px; }
+      .highlights-section h2 { font-size: 1.2rem; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes cardPop {
+      from { opacity: 0; transform: translateY(40px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
   </style>
 </head>
 <body>
-  <header id="top">
+  <!-- Header -->
+  <header class="site-header">
+    <div class="logo">
+      <img src="anchor-darshan-logo.svg" alt="Anchor Darshan Logo" />
+    </div>
     <nav aria-label="Main Navigation">
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#languages">Languages</a>
+      <a href="#highlights">Highlights</a>
       <a href="#contact">Contact</a>
     </nav>
+  </header>
+  <!-- Hero -->
+  <section class="hero">
     <h1>Anchor Darshan</h1>
     <p>Professional Event Host in Ahmedabad / Gandhinagar</p>
-  </header>
-  <main>
-    <article class="card" id="about">
-      <div class="photo">
-        <img src="Darshan.jpg" alt="Anchor Darshan" loading="lazy" style="max-width:100%;height:auto;box-shadow:0 8px 32px rgba(60,72,100,0.12);border-radius:2rem;border:3px solid #fff;background:#fff;display:block;object-fit:cover;" />
-      </div>
-      <section>
-        <h2>About Me</h2>
-        <p>I am <strong>Anchor Darshan</strong>, an experienced and dynamic event anchor from Ahmedabad. With a powerful stage presence, I bring energy and professionalism to every occasion — whether it's a joyful family celebration or a high-end corporate gathering.</p>
-      </section>
-      <section id="services">
-        <h2>Services Offered</h2>
-        <ul>
-          <li>Family Functions</li>
-          <li>Birthday Parties</li>
-          <li>Corporate Events</li>
-          <li>Musical Events</li>
-          <li>Any Kind of Events</li>
-        </ul>
-      </section>
-      <section id="languages">
-        <h2>Language</h2>
-        <ul>
-          <li>Gujarati</li>
-          <li>Hindi</li>
-          <li>English</li>
-        </ul>
-      </section>
-    </article>
-    <section class="cta" id="contact">
-      <h3>Ready to Make Your Event Unforgettable?</h3>
-      <p>Let's connect and make your next event truly special with professional anchoring.</p>
-      <a href="https://wa.me/918000672585" target="_blank" rel="noopener" aria-label="Contact on WhatsApp">Contact on WhatsApp</a>
-    </section>
-  </main>
-  <footer>&copy; 2025 Anchor Darshan • Ahmedabad, India • All Rights Reserved</footer>
+    <a href="https://wa.me/918000672585?text=Hi" target="_blank" rel="noopener" class="cta-btn" aria-label="Book Now on WhatsApp">Book Now</a>
+  </section>
+  <!-- Info Cards -->
+  <section class="info-section">
+    <div class="info-card" id="about">
+      <div class="icon" aria-hidden="true">🎤</div>
+      <h2>About Me</h2>
+      <p>I am <strong>Anchor Darshan</strong>, an experienced and dynamic event anchor from Ahmedabad. With a powerful stage presence, I bring energy and professionalism to every occasion — whether it's a joyful family celebration or a high-end corporate gathering.</p>
+    </div>
+    <div class="info-card" id="services">
+      <div class="icon" aria-hidden="true">✨</div>
+      <h2>Services Offered</h2>
+      <ul>
+        <li>Family Functions</li>
+        <li>Birthday Parties</li>
+        <li>Corporate Events</li>
+        <li>Musical Events</li>
+        <li>Any Kind of Events</li>
+      </ul>
+    </div>
+    <div class="info-card" id="languages">
+      <div class="icon" aria-hidden="true">🌐</div>
+      <h2>Languages</h2>
+      <ul>
+        <li>Gujarati</li>
+        <li>Hindi</li>
+        <li>English</li>
+      </ul>
+    </div>
+  </section>
+  <!-- Anchoring Highlights -->
+  <section class="highlights-section" id="highlights">
+    <h2>Anchoring Highlights</h2>
+    <div class="highlights-gallery">
+      <figure><img src="Anchor1.jpg" alt="Wedding Event"><figcaption>Wedding Event</figcaption></figure>
+      <figure><img src="Anchor2.jpg" alt="Corporate Show"><figcaption>Corporate Show</figcaption></figure>
+      <figure><img src="Anchor3.jpg" alt="Birthday Party"><figcaption>Birthday Party</figcaption></figure>
+      <figure><img src="Anchor4.jpg" alt="Musical Night"><figcaption>Musical Night</figcaption></figure>
+      <figure><img src="Anchor6.jpg" alt="Family Gathering"><figcaption>Family Gathering</figcaption></figure>
+      <figure><img src="Anchor7.jpg" alt="Stage Show"><figcaption>Stage Show</figcaption></figure>
+      <figure><img src="Anchor8.jpg" alt="Outdoor Event"><figcaption>Outdoor Event</figcaption></figure>
+      <figure><img src="Anchor9.jpg" alt="Special Occasion"><figcaption>Special Occasion</figcaption></figure>
+      <figure><img src="1751885234489.jpg" alt="Anchoring Moment"><figcaption>Anchoring Moment</figcaption></figure>
+      <figure><img src="1751885234501.jpg" alt="Anchoring Moment"><figcaption>Anchoring Moment</figcaption></figure>
+    </div>
+  </section>
+  <!-- Lightbox for Highlights -->
+  <div class="lightbox" id="lightbox" tabindex="-1" aria-modal="true" role="dialog">
+    <button class="close" id="lightbox-close" aria-label="Close">&times;</button>
+    <img src="" alt="Highlight" id="lightbox-img" />
+  </div>
+  <!-- Contact CTA -->
+  <section class="cta" id="contact" style="background: linear-gradient(90deg, var(--accent) 0%, var(--primary) 100%); color: #fff; text-align: center; padding: 2.5rem 1.5rem 2rem 1.5rem; border-radius: var(--radius); box-shadow: 0 4px 24px rgba(6,182,212,0.10); margin: 48px auto 0 auto; max-width: 700px;">
+    <h3 style="font-size: 1.4rem; font-family: 'Montserrat', Arial, sans-serif; font-weight: 700; margin-bottom: 12px; letter-spacing: 0.01em;">Ready to Make Your Event Unforgettable?</h3>
+    <p style="color: #e0f2fe; margin-bottom: 18px; font-size: 1.08rem;">Let's connect and make your next event truly special with professional anchoring.</p>
+    <a href="https://wa.me/918000672585" target="_blank" rel="noopener" aria-label="Contact on WhatsApp" style="background: #fff; color: var(--primary); padding: 13px 32px; font-weight: 700; border-radius: 8px; text-decoration: none; font-size: 1.1rem; box-shadow: 0 2px 12px rgba(6,182,212,0.10); transition: background 0.2s, color 0.2s, transform 0.2s; display: inline-block; margin-top: 8px;">Contact on WhatsApp</a>
+  </section>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-social">
+      <a href="https://wa.me/918000672585" target="_blank" aria-label="WhatsApp"><span aria-hidden="true">&#128222;</span></a>
+      <a href="mailto:darshmodi177@gmail.com" aria-label="Email"><span aria-hidden="true">&#9993;</span></a>
+      <a href="#" aria-label="Instagram"><span aria-hidden="true">&#127748;</span></a>
+    </div>
+    &copy; 2025 Anchor Darshan • Ahmedabad, India • All Rights Reserved
+  </footer>
   <script>
-    // Scroll reveal effect for cards, cta, and footer
+    // Fade/slide-in animation for cards
     function revealOnScroll() {
-      const revealEls = document.querySelectorAll('.card, .cta, footer');
+      const revealEls = document.querySelectorAll('.info-card, .highlights-section, .cta, footer');
       const windowHeight = window.innerHeight;
       revealEls.forEach(el => {
         const top = el.getBoundingClientRect().top;
@@ -340,15 +442,34 @@
     window.addEventListener('scroll', revealOnScroll);
     window.addEventListener('DOMContentLoaded', () => {
       revealOnScroll();
-      // Smooth scroll for nav
-      document.querySelectorAll('nav a').forEach(link => {
-        link.addEventListener('click', function(e) {
-          const href = this.getAttribute('href');
-          if (href.startsWith('#')) {
-            e.preventDefault();
-            document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
-          }
+      // Lightbox for highlights
+      const gallery = document.querySelectorAll('.highlights-gallery img');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxClose = document.getElementById('lightbox-close');
+      gallery.forEach(img => {
+        img.addEventListener('click', () => {
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt;
+          lightbox.classList.add('active');
+          lightbox.focus();
         });
+      });
+      lightboxClose.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+        lightboxImg.src = '';
+      });
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          lightbox.classList.remove('active');
+          lightboxImg.src = '';
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          lightbox.classList.remove('active');
+          lightboxImg.src = '';
+        }
       });
     });
   </script>
